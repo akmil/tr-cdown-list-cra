@@ -4,7 +4,7 @@
 }
 .tour-list .list .item-title {
     text-transform: capitalize;
-    margin-bottom: 3rem;
+    margin-bottom: 1rem;
 }
 
 .tour-list .list img {
@@ -27,6 +27,27 @@
 .tour-list .list .table td:nth-child(2) {
     word-break: break-word;
 }
+
+.tour-list .star-rating {
+    display: flex;
+    align-items: center;
+    font-size: 30px;
+}
+
+/* star */
+.tour-list .star.gold-gray { color: gray; }
+.tour-list .star.gold-gray:after {
+    display: inline-block;
+    color: gold;
+    content: '\2605';
+    position: absolute;
+    margin-left: -25px;
+    width: 13px;
+    overflow: hidden;
+}
+.tour-list .star.gray { color: gray; }
+.tour-list .star.gold { color: gold; }
+/* star END */
 
 @media (max-width: 768px) {
     .tour-list .list img {
