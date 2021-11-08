@@ -1,20 +1,36 @@
-.countdown-list {
-  display: flex;
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  width: 100%;
-  min-width: 500px;
+.tour-list .tour-list--select {
+    display: flex;
+    margin-left: auto;
+}
+.tour-list .list .item-title {
+    text-transform: capitalize;
+    margin-bottom: 3rem;
 }
 
-.countdown-list .countdown-item {
-  border: 2px solid #000000;
-  min-width: 25%;
-  margin: 10px;
+.tour-list .list img {
+    width: 100%;
+    height: auto;
 }
 
-.countdown-list .countdown-item h3{
-  font-size: 48px;
-  font-weight: normal;
-  margin: 0;
+.tour-list .list .link-primary {
+    cursor: pointer;
 }
+
+.tour-list .list .table td {
+    text-align: left;
+    padding-top: 0;
+    padding-bottom: 0;
+}
+.tour-list .list .table td:first-child {
+    font-weight: bold;
+}
+.tour-list .list .table td:nth-child(2) {
+    word-break: break-word;
+}
+
+@media (max-width: 768px) {
+    .tour-list .list img {
+        max-height: 80px;
+    }
+}
+

@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {ResponseContractItem} from "../api/tourListApi";
+import {ResponseContractItem} from "../../types";
 type PropsType = {item: ResponseContractItem}
 
 const Truncated = (array: string[], maxLength= 0) => {

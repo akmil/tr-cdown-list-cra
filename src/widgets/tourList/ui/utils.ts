@@ -1,4 +1,4 @@
-import { ResponseContractItem } from "./types";
+import { ResponseContractItem } from "../types";
 
 export type PriceFilterType = {
     dataVal: ResponseContractItem[],

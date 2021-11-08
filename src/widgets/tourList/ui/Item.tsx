@@ -1,49 +1,31 @@
 import React from 'react';
-import {ResponseContractItem} from "./api/tourListApi";
+import { ResponseContractItem } from "../types";
+import ItemCenterCol from './listItems/ItemCenterCol';
+import ItemRightCol from './listItems/ItemRightCol';
+import { LazyImage } from './LazyImage';
+type PropsType = {item: ResponseContractItem}
 
-const TourItemTable = ({item}: {item: ResponseContractItem}) => {
-    const {destinations} = item;
-    const getDataNormalized = () => ([
-        { title: 'Destinations', val: destinations.toString() },
-        { title: 'Age Range', val: `${item.age_min} - ${item.age_max}` },
-        { title: 'Regions', val: item.regions },
-        { title: 'Regions', val: item.regions },
-        { title: 'Travel style', val: item.travel_styles.toString() },
-        { title: 'Operated in', val: item.operated_in },
-        { title: 'operator', val: '---' },
-    ]);
-
+const Item = ({item}: PropsType) => {
     return (
-        <table className="table table-light table-borderless">
-            <tbody>
-            {getDataNormalized().map((item) => (
-                <tr key={item.title}>
-                    <td>{item.title}:</td>
-                    <td>{item.val}</td>
-                </tr>
-            ))}
-            </tbody>
-        </table>
-    )
-}
-const TourItem = ({item}: {item: ResponseContractItem}) => {
-    return (
-        <div className="d-flex">
-            <div className="col-3">
-                <img src={item.img_url} alt={item.title}/>
+        <div className="border flex-md-row g-0 h-md-250 mb-4 overflow-hidden position-relative rounded row shadow">
+            <div className="col-md-3">
+                <LazyImage
+                    src={item.img_url}
+                    alt={item.title}
+                />
+                <LazyImage
+                    src={item.map_url}
+                    alt={'map_' + item.title}
+                />
             </div>
-            <div className="col-9">
-
-                <div className="row">
-                    <div className="col-7 fs-6">
-                        <h3>{item.title}</h3>
-                        <TourItemTable item={item} />
+            <div className="col-md-9">
+                <div className="row p-4">
+                    <div className="col-md-7 fs-6">
+                        <h3 className="item-title">{item.title}</h3>
+                        <ItemCenterCol item={item} />
                     </div >
-                    <div className="col-5">
-                        <div>price:  {item.price}</div>
-                        <div>travel len ----</div>
-                        {item.flexible_booking && <div>book with flexability </div>}
-
+                    <div className="col-md-5">
+                        <ItemRightCol item={item}/>
                     </div >
                 </div>
             </div >
@@ -51,4 +33,4 @@ const TourItem = ({item}: {item: ResponseContractItem}) => {
     );
 };
 
-export default TourItem;
+export default Item;

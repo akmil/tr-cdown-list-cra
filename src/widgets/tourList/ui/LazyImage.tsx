@@ -1,18 +1,29 @@
-export const LazyImage = ({ src, alt }) => {
-    const [imageSrc, setImageSrc] = useState(placeHolder);
-    const [imageRef, setImageRef] = useState();
+import React, {useState, useEffect} from 'react';
 
-    const onLoad = event => {
-        event.target.classList.add("loaded");
+const placeHolder =
+    "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkqAcAAIUAgUW0RjgAAAAASUVORK5CYII=";
+
+type LazyImageProps = {
+    src: string,
+    alt: string
+}
+export const LazyImage = ({ src, alt }: LazyImageProps) => {
+    const [imageSrc, setImageSrc] = useState(placeHolder);
+    const [imageRef, setImageRef] = useState<HTMLImageElement | null>(null);
+
+    const onLoad = (event: React.SyntheticEvent<HTMLImageElement>) => {
+        const target = event.target as Element;
+        target.classList.add("loaded");
     };
 
-    const onError = event => {
-        event.target.classList.add("has-error");
+    const onError = (event: React.SyntheticEvent<HTMLImageElement, Event>) => {
+        const target = event.target as Element;
+        target.classList.add("has-error");
     };
 
     useEffect(
         () => {
-            let observer;
+            let observer: IntersectionObserver;
             let didCancel = false;
 
             if (imageRef && imageSrc !== src) {
@@ -43,15 +54,16 @@ export const LazyImage = ({ src, alt }) => {
             return () => {
                 didCancel = true;
                 // on component cleanup, we remove the listner
-                if (observer && observer.unobserve) {
+                if (observer && observer.unobserve && imageRef) {
                     observer.unobserve(imageRef);
                 }
             };
         },
         [src, imageSrc, imageRef]
     );
+
     return (
-        <Image
+        <img
             ref={setImageRef}
             src={imageSrc}
             alt={alt}
@@ -60,3 +72,4 @@ export const LazyImage = ({ src, alt }) => {
         />
     );
 };
+

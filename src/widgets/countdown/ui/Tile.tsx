@@ -1,5 +1,5 @@
 import React from 'react';
-import {TileCounter} from "./types";
+import {TileCounter} from "../types";
 
 export const Tile = ({val, dimension}: TileCounter) => {
     return (

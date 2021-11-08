@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { ResponseContractItem } from "../types";
+import { ResponseContractItem } from "../../types";
 import { priceFilter, PriceFilterType } from "../utils";
 
 const sortBy = [
@@ -20,7 +20,6 @@ const SortByDropdown = ({dataVal, setDataVal} :
 
         const filterType = value.split(":")[0];
         const isLowest = value.split(":")[1] === 'true';
-        console.log(filterType, isLowest);
         const newData = priceFilter({dataVal, filterType, isLowest} as PriceFilterType);
 
         setDataVal([...newData]);
